@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "animejs": "^3.2.2",
     "bcryptjs": "^2.4.3",
     "install": "^0.13.0",
     "mongoose": "^8.0.0",

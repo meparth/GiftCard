@@ -1,0 +1,31 @@
+.container {
+    position: relative;
+    width: 300px;
+
+}
+
+.envelop {
+    position: absolute;
+
+}
+
+.back {
+    top: -7px;
+    z-index: 0;
+}
+
+.letter {
+    z-index: 2;
+    display: none;
+}
+
+.front {
+    position: absolute;
+    z-index: 9;
+}
+
+.frontflap {
+    position: absolute;
+    top: -10px;
+    z-index: 10;
+}
