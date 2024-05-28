@@ -5,7 +5,6 @@ import Letter from "@/components/postCard/letter/letter";
 const PostCard = () => {
     return (
         <>
-            {/*<Letter />*/}
             <Envelope />
 
 

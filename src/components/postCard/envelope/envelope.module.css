@@ -1,7 +1,23 @@
 .container {
-    position: relative;
-    width: 300px;
+    position: absolute;
+    bottom: 250px;
+}
 
+/* Mobile styles */
+@media (max-width: 768px) {
+    .container {
+        width: 90%; /* Occupy almost the full width on mobile devices */
+        max-width: 300px;
+        bottom: 200px;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    .container {
+        min-width: 300px;
+        width: 400px;
+    }
 }
 
 .envelop {
@@ -14,9 +30,19 @@
     z-index: 0;
 }
 
+.letterholder {
+    display: flex;
+    justify-content: center;
+    bottom: 20px;
+    position: relative;
+}
+
 .letter {
     z-index: 2;
-    display: none;
+    /*display: none;*/
+    /*opacity: 0;*/
+    width: 90%;
+    transform: scaleY(0) translateY(-20px);
 }
 
 .front {
