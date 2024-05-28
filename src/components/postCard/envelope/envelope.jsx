@@ -39,14 +39,14 @@ const animateLetterOut = () => {
     return anime({
         targets: `.${styles.letter}`,
         duration: 0,
-        translateY: '-20px',
+        translateY: '-2rem',
         scaleY: 0,
     }).finished.then(() => {
         anime({
             targets: `.${styles.letter}`,
             easing: "easeOutElastic",
             duration: 500,
-            translateY: '-250px',
+            translateY: '-15rem',
             scaleY: 1,
         })
     })
@@ -56,7 +56,7 @@ const animateLetterIn = () => {
         targets: `.${styles.letter}`,
         easing: "easeOutExpo",
         duration: 250,
-        translateY: '-20px',
+        translateY: '-2rem',
         scaleY: 0,
     })
 }
