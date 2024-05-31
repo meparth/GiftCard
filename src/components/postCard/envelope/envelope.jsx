@@ -2,6 +2,7 @@
 import styles from './envelope.module.css'
 import anime from "animejs";
 import {useEffect, useRef, useState} from "react";
+import Letter from "@/components/postCard/letter/letter";
 
 
 const animateEnvelopeClose = () => {
@@ -37,16 +38,16 @@ const animateLetterOut = () => {
     // if we don't translateY before starting animation,
     // the letter seems to open from below the envelope.
     return anime({
-        targets: `.${styles.letter}`,
+        targets: `.${styles.letterholder}`,
         duration: 0,
         translateY: '-2rem',
         scaleY: 0,
     }).finished.then(() => {
         anime({
-            targets: `.${styles.letter}`,
+            targets: `.${styles.letterholder}`,
             easing: "easeOutElastic",
-            duration: 500,
-            translateY: '-15rem',
+            duration: 350,
+            translateY: '-7rem',
             scaleY: 1,
         })
     })
@@ -54,9 +55,9 @@ const animateLetterOut = () => {
 const animateLetterIn = () => {
     return anime({
         targets: `.${styles.letter}`,
-        easing: "easeOutExpo",
-        duration: 250,
-        translateY: '-2rem',
+        easing: "easeInExpo",
+        duration: 350,
+        translateY: '12rem',
         scaleY: 0,
     })
 }
@@ -64,7 +65,6 @@ const animateLetterIn = () => {
 const Envelope = () => {
 
     const [isFlapOpen, setIsFlapOpen] = useState(false);
-    const [isLetterOut, setIsLetterOut] = useState(false)
 
     const handleOpenFlap = () => {
         if (isFlapOpen) {
@@ -92,12 +92,17 @@ const Envelope = () => {
                 onClick={handleOpenFlap}
             />
 
-            <div className={`${styles.letterholder}`}>
-                <img
-                    className={`${styles.letter} ${styles.envelop}`}
-                    src={'/envelop-letter.svg'}
-                    // onClick={handleOpenFlap}
-                />
+            <div className={`${styles.letterholder} ${styles.letter} ${styles.envelop}`}>
+
+
+                <Letter>
+
+                </Letter>
+                {/*<img*/}
+                {/*    className={`${styles.letter} ${styles.envelop}`}*/}
+                {/*    src={'/envelop-letter.svg'}*/}
+                {/*    // onClick={handleOpenFlap}*/}
+                {/*/>*/}
             </div>
             <img
                 className={`${styles.front} ${styles.envelop}`}

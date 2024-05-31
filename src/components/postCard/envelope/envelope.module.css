@@ -35,15 +35,12 @@
     justify-content: center;
     bottom: 20px;
     position: relative;
+    margin: auto;
+    z-index: 2;
+    width: 90%;
+    transform: scaleY(0) ;
 }
 
-.letter {
-    z-index: 2;
-    /*display: none;*/
-    /*opacity: 0;*/
-    width: 90%;
-    transform: scaleY(0) translateY(-20px);
-}
 
 .front {
     position: absolute;
@@ -55,3 +52,5 @@
     top: -10px;
     z-index: 10;
 }
+
+
