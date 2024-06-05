@@ -66,43 +66,44 @@ const Envelope = () => {
 
     const [isFlapOpen, setIsFlapOpen] = useState(false);
 
+    // only for dev
+    useEffect(() => {
+        handleOpenFlap()
+    }, [])
+
     const handleOpenFlap = () => {
         if (isFlapOpen) {
-            animateLetterIn()
-                .finished.then(() => {
-                    animateEnvelopeClose();
-            })
-        } else {
-            animateEnvelopeOpen()
-                .finished.then(() => {
-                    animateLetterOut();
-            })
+            return;
         }
-        setIsFlapOpen(prevState => !prevState);
+        animateEnvelopeOpen()
+            .finished.then(() => {
+            animateLetterOut();
+        })
+        setIsFlapOpen(true);
 
     };
-
+    const handleCloseFlap = () => {
+        if (!isFlapOpen) {
+            return;
+        }
+        animateLetterIn()
+            .finished.then(() => {
+            animateEnvelopeClose();
+        })
+        setIsFlapOpen(false)
+    }
 
 
     return (
         <div className={styles.container}>
             <img
                 className={`${styles.back} ${styles.envelop}`}
-                 src={'/envelop-back.svg'}
-                onClick={handleOpenFlap}
+                src={'/envelop-back.svg'}
+                // onClick={handleOpenFlap}
             />
 
             <div className={`${styles.letterholder} ${styles.letter} ${styles.envelop}`}>
-
-
-                <Letter>
-
-                </Letter>
-                {/*<img*/}
-                {/*    className={`${styles.letter} ${styles.envelop}`}*/}
-                {/*    src={'/envelop-letter.svg'}*/}
-                {/*    // onClick={handleOpenFlap}*/}
-                {/*/>*/}
+                <Letter/>
             </div>
             <img
                 className={`${styles.front} ${styles.envelop}`}

@@ -21,3 +21,36 @@
         height: calc(100vh - 15rem);
     }
 }
+
+.form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+
+    padding: 20px;
+
+}
+/*
+
+.form input{
+    padding: 20px;
+    background-color: var(--bg);
+    color: var(--textColor);
+    border: none;
+    border-radius: 5px;
+}
+.form input:focus-visible {
+    outline-width: 0;
+    background-color: var(--bgFocused);
+}
+
+.form button{
+    padding: 20px;
+    cursor: pointer;
+    background-color: var(--btn);
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+}*/

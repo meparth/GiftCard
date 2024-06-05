@@ -1,9 +1,20 @@
 :root {
   --bg: #dddddd;
+  --bgFocused: #bbb;
   --bgSoft: #2d2b42;
   --text: white;
   --textSoft: #e5e5e5;
+  --textColor: #222;
   --btn: #3673fd;
+
+  --formBorderColor: #123;
+  --formBackgroundColor: #345;
+  --formButtonColor: #444;
+  --formHeight: 1rem;
+  --formTextColor: white;
+  --formBgColor: #dddddd;
+  --formBgFocused: #bbb;
+  --formLabelColor: grey;
 }
 
 * {
@@ -14,11 +25,9 @@
 
 html {
   font-size: 16px;
-
 }
 
 body {
-  background-color: var(--bg);
   color: var(--text);
 }
 

@@ -132,9 +132,15 @@ export const register = async (previousState, formData) => {
   }
 };
 
+export const sendRequest = async (prevState, formData) => {
+  console.log(formData)
+}
+
 export const login = async (prevState, formData) => {
   const { username, password } = Object.fromEntries(formData);
-
+  console.log(formData)
+  // window.alert(username + ' ' + password)
+/*
   try {
     await signIn("credentials", { username, password });
   } catch (err) {
@@ -143,6 +149,6 @@ export const login = async (prevState, formData) => {
     if (err.message.includes("CredentialsSignin")) {
       return { error: "Invalid username or password" };
     }
-    throw err;
-  }
+    throw err;*/
+  // }
 };

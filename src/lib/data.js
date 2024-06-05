@@ -59,3 +59,12 @@ export const getUsers = async () => {
     throw new Error("Failed to fetch users!");
   }
 };
+
+export const requestGiftCard = async () => {
+  try {
+    const data = 'abcd';
+    return data;
+  } catch (e) {
+    console.log(e)
+  }
+}
