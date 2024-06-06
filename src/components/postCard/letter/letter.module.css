@@ -8,8 +8,9 @@
     height: calc(100vh - 7rem);
     overflow: scroll;
     border-radius: 20px;
-    border: 5px solid red;
-    background-color: antiquewhite;
+    border: 5px solid var(--letterBorderColor);
+    background-image: url("/parchment.png");
+    background-size: cover;
     position: absolute;
     bottom: -18rem;
     scrollbar-width: none;

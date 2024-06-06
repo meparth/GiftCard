@@ -1,34 +1,27 @@
 .inputGroup {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     gap: 5px;
 }
 
 .input{
     width: 100%;
-    padding: 20px;
+    padding: 15px;
     background-color: var(--formBgColor);
     color: var(--formTextColor);
     border: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .input:focus-visible {
     outline-width: 0;
     background-color: var(--formBgFocused);
+    color: var(--formTextColorFocused)
 }
 
 .label {
     color: var(--formLabelColor);
 }
 
-.button{
-    padding: 20px;
-    cursor: pointer;
-    background-color: var(--btn);
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-}

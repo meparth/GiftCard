@@ -11,10 +11,15 @@
   --formBackgroundColor: #345;
   --formButtonColor: #444;
   --formHeight: 1rem;
-  --formTextColor: white;
-  --formBgColor: #dddddd;
-  --formBgFocused: #bbb;
+  --formTextColor: #789;
+  --formBgColor: #fff6;
+  --formBgFocused: #fff;
+  --formTextColorFocused: black;
   --formLabelColor: grey;
+
+
+  --letterBgColor: khaki;
+  --letterBorderColor: #789;
 }
 
 * {
