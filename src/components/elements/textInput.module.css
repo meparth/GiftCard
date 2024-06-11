@@ -12,7 +12,7 @@
     color: var(--formTextColor);
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: text;
 }
 
 .input:focus-visible {

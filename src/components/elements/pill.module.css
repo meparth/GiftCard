@@ -1,0 +1,40 @@
+
+.button {
+    width: 100%;
+    padding: 13px;
+    align-self: center;
+    background-color: var(--btnBgColor);
+    color: var(--btnColor);
+    border-radius: 5px;
+    border: none;
+    font-size: large;
+    cursor: pointer;
+}
+.button:hover {
+    background-color: #c3e3fa;
+}
+.button:active {
+    width: 98%;
+    background-color: #97d1fb;
+}
+
+.button:focus-visible {
+    background-color: var(--btnBgColorFocused);
+
+}
+
+.pill {
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    border: 1px solid darkseagreen;
+    border-radius: 5px;
+    cursor: pointer;
+    color: grey;
+}
+
+.selected {
+    background-color: #97d1fb;
+    border: 1px solid #97d1fb;
+    color: white;
+}
