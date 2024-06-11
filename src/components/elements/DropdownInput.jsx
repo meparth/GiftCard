@@ -1,5 +1,6 @@
 import styles from './dropdownInput.module.css'
 import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 
 const DropdownInput = ({
                        name,
@@ -15,11 +16,10 @@ const DropdownInput = ({
     return (
         <div className={`${styles.inputGroup}`}>
             {label && <label className={`${styles.label}`} htmlFor={name}>{label}</label>}
-            <Select
+            <CreatableSelect
+                isClearable
                 className={`${styles.input}`}
                 name={name}
-                value={selectedOption}
-                onChange={onChange}
                 options={options}
                 menuPlacement='auto'
                 styles={{
@@ -28,22 +28,13 @@ const DropdownInput = ({
                         border: 'none',
                         boxShadow: 'none',
                     }),
+                    valueContainer: (base) => ({
+                        ...base,
+                        textAlign: 'left',
+                    })
                 }}
             />
-            {/*<select
-                name={name}
-                value={value}
-                onChange={onChange}
-                placeholder={placeholder}
-                className={`${styles.input} ${error ? 'input-error' : ''}`}
-            >
-            {error && <span className="error-message">{error}</span>}
-            {options?.map((option, idx) => (
-                <option className={`${styles.option}`} key={idx}>
-                    {option}
-                </option>
-            ))}
-            </select>*/}
+
         </div>
     );
 };

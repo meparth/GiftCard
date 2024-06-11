@@ -13,30 +13,42 @@ const Letter = () => {
     const [state, formAction] = useFormState(sendRequest, undefined);
     console.log('~! form action: ', formAction)
 
-    const options = [
-        { value: "blues", label: "Blues" },
-        { value: "rock", label: "Rock" },
-        { value: "jazz", label: "Jazz" },
-        { value: "orchestra", label: "Orchestra" },
+    const occasionOptions = [
+        { value: "birthday", label: "Birthday Bash 🎂" },
+        { value: "anniversary", label: "Anniversary Adventure 💑" },
+        { value: "graduation", label: "Graduation Glory 🎓" },
+        { value: "thankyou", label: "Thank You Triumph 🙏" },
+        { value: "getwell", label: "Get Well Gala 🤒" },
+        { value: "holiday", label: "Holiday Hooray 🎄" },
+        { value: "other", label: "Other (Mystery Event) 🎭" },
     ];
-
-    const [selectedOption, setSelectedOption] = useState(null)
-
 
     return (
         <div className={`${styles.lettercontent}`}>
             <form className={styles.form} action={formAction}>
-                <TextInput
-                    name='occasion'
-                    label='whats the big deal'
-                ></TextInput>
+
+                {/*OCCASION*/}
                 <DropdownInput
-                    name='optionsss'
-                    label='ples select'
-                    options={options}
-                    selectedOption={selectedOption}
-                    onChange={setSelectedOption}
+                    name='occasion'
+                    label="What's the celebration?"
+                    options={occasionOptions}
                 />
+
+                {/*RECIPIENT*/}
+                <TextInput
+                    name='recipient'
+                    label="Who is the recipient?"
+                ></TextInput>
+
+                <TextInput
+                    name='messageTitle'
+                    label="Give your message a catchy title"
+                ></TextInput>
+
+
+
+
+
                 <Button type="submit"> on </Button>
             </form>
         </div>
