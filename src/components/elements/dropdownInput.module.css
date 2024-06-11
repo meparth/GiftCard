@@ -6,11 +6,11 @@
 }
 
 .input{
-    appearance: none;
-    /* safari */
-    -webkit-appearance: none;
+    /*appearance: none;
+    !* safari *!
+    -webkit-appearance: none;*/
     width: 100%;
-    padding: 15px;
+    padding: 5px;
     background-color: var(--formBgColor);
     color: var(--formTextColor);
     border: none;
@@ -30,27 +30,4 @@
 
 .option {
 
-}
-
-.input::before,
-.input::after {
-    --size: 0.3rem;
-    position: absolute;
-    content: "";
-    right: 1rem;
-    pointer-events: none;
-}
-
-.input::before {
-    border-left: var(--size) solid transparent;
-    border-right: var(--size) solid transparent;
-    border-bottom: var(--size) solid black;
-    top: 40%;
-}
-
-.input::after {
-    border-left: var(--size) solid transparent;
-    border-right: var(--size) solid transparent;
-    border-top: var(--size) solid black;
-    top: 55%;
 }

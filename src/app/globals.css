@@ -20,6 +20,10 @@
 
   --letterBgColor: khaki;
   --letterBorderColor: #789;
+
+  --btnBgColor: #c0ffb4;
+  --btnBgColorFocused: darkgreen;
+  --btnColor: grey;
 }
 
 * {

@@ -1,19 +1,36 @@
 import styles from './dropdownInput.module.css'
+import Select from "react-select";
 
-const TextInput = ({
-    options,
-    name,
-    value,
-    onChange,
-    placeholder,
-    label,
-    error
-}) => {
+const DropdownInput = ({
+                       name,
+                       options,
+                       selectedOption,
+                       value,
+                       onChange,
+                       placeholder,
+                       label,
+                       error
+                   }) => {
 
     return (
         <div className={`${styles.inputGroup}`}>
             {label && <label className={`${styles.label}`} htmlFor={name}>{label}</label>}
-            <select
+            <Select
+                className={`${styles.input}`}
+                name={name}
+                value={selectedOption}
+                onChange={onChange}
+                options={options}
+                menuPlacement='auto'
+                styles={{
+                    control: (baseStyles, state) => ({
+                        display: 'flex',
+                        border: 'none',
+                        boxShadow: 'none',
+                    }),
+                }}
+            />
+            {/*<select
                 name={name}
                 value={value}
                 onChange={onChange}
@@ -26,9 +43,9 @@ const TextInput = ({
                     {option}
                 </option>
             ))}
-            </select>
+            </select>*/}
         </div>
     );
 };
 
-export default TextInput;
+export default DropdownInput;
