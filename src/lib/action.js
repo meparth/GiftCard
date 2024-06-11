@@ -97,7 +97,7 @@ export const handleLogout = async () => {
 
 export const register = async (previousState, formData) => {
   const { username, email, password, img, passwordRepeat } =
-    Object.fromEntries(formData);
+      Object.fromEntries(formData);
 
   if (password !== passwordRepeat) {
     return { error: "Passwords do not match" };
@@ -140,15 +140,15 @@ export const login = async (prevState, formData) => {
   const { username, password } = Object.fromEntries(formData);
   console.log(formData)
   // window.alert(username + ' ' + password)
-/*
-  try {
-    await signIn("credentials", { username, password });
-  } catch (err) {
-    console.log(err);
+  /*
+    try {
+      await signIn("credentials", { username, password });
+    } catch (err) {
+      console.log(err);
 
-    if (err.message.includes("CredentialsSignin")) {
-      return { error: "Invalid username or password" };
-    }
-    throw err;*/
+      if (err.message.includes("CredentialsSignin")) {
+        return { error: "Invalid username or password" };
+      }
+      throw err;*/
   // }
 };

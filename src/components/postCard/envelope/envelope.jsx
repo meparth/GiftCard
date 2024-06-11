@@ -46,11 +46,19 @@ const animateLetterOut = () => {
         anime({
             targets: `.${styles.letterholder}`,
             easing: "easeOutElastic",
-            duration: 350,
+            duration: 500,
             translateY: '-7rem',
             scaleY: 1,
+            zIndex: 10,
         })
+            /*.finished.then(() => {
+            anime({
+                targets: `.${styles.letterholder}`,
+                backgroundColor: 'grey',
+            })
+        })*/
     })
+
 }
 const animateLetterIn = () => {
     return anime({
@@ -67,12 +75,14 @@ const Envelope = () => {
     const [isFlapOpen, setIsFlapOpen] = useState(false);
 
     // only for dev
-    useEffect(() => {
-        handleOpenFlap()
-    }, [])
+    // useEffect(() => {
+    //     handleOpenFlap()
+    // }, [])
 
     const handleOpenFlap = () => {
         if (isFlapOpen) {
+            // todo: remove before pushing
+            handleCloseFlap()
             return;
         }
         animateEnvelopeOpen()
