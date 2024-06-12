@@ -23,5 +23,6 @@
 
 .label {
     color: var(--formLabelColor);
+    user-select: none;
 }
 

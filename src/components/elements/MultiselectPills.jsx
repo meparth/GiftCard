@@ -37,7 +37,7 @@ const MultiselectPills = ({
                     }
 
                     const renderedPills = options.map(option => {
-                        console.log(option, value, value.map(item => item.value).includes(option.value))
+                        // console.log(option, value, value.map(item => item.value).includes(option.value))
 
                         return <Pill
                         key={option.value}

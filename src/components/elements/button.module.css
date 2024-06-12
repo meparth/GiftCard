@@ -9,6 +9,8 @@
     border: none;
     font-size: large;
     cursor: pointer;
+
+    user-select: none;
 }
 .button:hover {
     background-color: #c3e3fa;
