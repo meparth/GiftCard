@@ -9,7 +9,7 @@
     overflow: scroll;
     border-radius: 20px;
     border: 5px solid var(--letterBorderColor);
-    background-image: url("/parchment.png");
+    background-image: url("/parchment_small.png");
     background-size: cover;
     position: absolute;
     bottom: -18rem;
