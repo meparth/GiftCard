@@ -8,7 +8,8 @@ const nextConfig = {
       }
     ]
   },
-  // output: 'export',
+  output: 'export',
+  basePath: '/giftcard',
 }
 
 module.exports = nextConfig

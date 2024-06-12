@@ -7,11 +7,8 @@ import ClientSideProviderTest from "@/components/clientSideProviderTest";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: {
-    default:"Next.js 14 Homepage",
-    template:"%s | Next.js 14"
-  },
-  description: "Next.js starter app description",
+  title: "GiftCard",
+  description: "A place to get the perfect giftcard for the perfect person",
 };
 
 export default function RootLayout({ children }) {
