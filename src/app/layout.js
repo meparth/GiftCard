@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "GiftCard",
-  description: "A place to get the perfect giftcard for the perfect person",
+  description: "A place to get the perfect gift card for the perfect person",
 };
 
 export default function RootLayout({ children }) {
