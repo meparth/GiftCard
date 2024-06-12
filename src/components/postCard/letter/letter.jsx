@@ -72,6 +72,7 @@ const Letter = () => {
 
                 <MultiselectPills
                     name='interests'
+                    label='What are they into? Tap away!'
                     options={interestOptions}
                     control={control}
                 >

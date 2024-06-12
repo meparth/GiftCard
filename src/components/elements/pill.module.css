@@ -27,7 +27,8 @@
     width: min-content;
     height: fit-content;
     padding: 10px;
-    border: 1px solid darkseagreen;
+    /*border: 1px solid darkseagreen;*/
+    background-color: var(--formBgColor);
     border-radius: 5px;
     cursor: pointer;
     color: grey;
@@ -35,6 +36,6 @@
 
 .selected {
     background-color: #97d1fb;
-    border: 1px solid #97d1fb;
+    /*border: 1px solid #97d1fb;*/
     color: white;
 }

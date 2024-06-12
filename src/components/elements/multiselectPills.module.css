@@ -1,12 +1,15 @@
 
 .inputGroup {
-
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
 }
 
 .label {
-    user-select: none
+    color: var(--formLabelColor);
+    user-select: none;
 }
-
 .pillWrapper {
     display: flex;
     gap: 10px;
