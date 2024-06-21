@@ -7,6 +7,7 @@ import {useState} from "react";
 import Button from "@/components/elements/Button";
 import MultiselectPills from "@/components/elements/MultiselectPills";
 import {useForm} from "react-hook-form";
+import {trialAction} from "@/actions/trial";
 
 
 const Letter = () => {
@@ -41,6 +42,8 @@ const Letter = () => {
     ];
 
     const handleFormSubmit = (event) => {
+
+        trialAction(event)
         console.log(event)
     }
 
