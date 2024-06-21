@@ -8,6 +8,7 @@ import Button from "@/components/elements/Button";
 import MultiselectPills from "@/components/elements/MultiselectPills";
 import {useForm} from "react-hook-form";
 import {trialAction} from "@/actions/trial";
+import {generateText} from "@/actions/text-generation";
 
 
 const Letter = () => {
@@ -43,7 +44,7 @@ const Letter = () => {
 
     const handleFormSubmit = (event) => {
 
-        trialAction(event)
+        generateText(`generate a poem for ${event.recipient} and the occasion is ${event.occasion.value} and his interests are - ${event.interests.reduce((prev, curr) => prev + ', ' + curr.value, '')}`)
         console.log(event)
     }
 
