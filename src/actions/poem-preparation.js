@@ -18,7 +18,9 @@ export const getPreparedPromptWithInputData = (inputData) => {
     console.log(interestsAsText, recipient, messageTitle, occasionText)
 
     const prompt = `I want to get a poem for someone. Write a 4 line poem for a person named ${recipient}. I want the poem to greet him on his ${occasionText}.
-                             consider that their interests are: ${interestsAsText}. Use appropriate emojis at the start and end of each line. Make it cordial. Give me only the poem, NOTHING ELSE.`
+                             consider that their interests are: ${interestsAsText}. Use appropriate emojis at the very start and also at the end of each line.
+                             Please make sure the words rhyme nicely. Add an appropriate title in all caps and emojis.
+                             Give me only the poem, NOTHING ELSE.`
     return getSanitizedText(prompt)
     //interests: Array(4), occasion: {…}, recipient: 'abcd', messageTitle: 'happy birthday from sylhet'
 }
