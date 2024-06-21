@@ -11,6 +11,7 @@
     "deploy": "next build && next export"
   },
   "dependencies": {
+    "@mistralai/mistralai": "^0.5.0",
     "animejs": "^3.2.2",
     "bcryptjs": "^2.4.3",
     "install": "^0.13.0",
