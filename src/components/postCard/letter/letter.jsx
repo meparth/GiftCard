@@ -8,6 +8,8 @@ import Button from "@/components/elements/Button";
 import MultiselectPills from "@/components/elements/MultiselectPills";
 import {useForm} from "react-hook-form";
 import {trialAction} from "@/actions/trial";
+import {getPreparedPromptWithInputData} from "@/actions/poem-preparation";
+import {startGeneration} from "@/actions/text-generation";
 
 
 const Letter = () => {
@@ -43,7 +45,7 @@ const Letter = () => {
 
     const handleFormSubmit = (event) => {
 
-        trialAction(event)
+        console.log(startGeneration(event))
         console.log(event)
     }
 
