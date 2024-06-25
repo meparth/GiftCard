@@ -1,29 +1,21 @@
 "use server"
 
-import Groq from "groq-sdk";
+import {generateWithGroq} from "@/actions/text-generation-with-groq";
+import {getPreparedPromptWithInputData} from "@/actions/prompt-preparation";
 
-import {getPreparedPromptWithInputData} from "@/actions/poem-preparation";
+/**
+ * will return the text generated from llm.
+ * type can be POEM
+ */
+export const getGeneratedText = async (input, type = 'POEM') => {
+    const preparedPrompt = getPreparedPromptWithInputData(input, type)
 
-export const textGeneration = async (prompt) => {
-    const groq = new Groq({ apiKey: process.env.groq_api_key });
-    const chatCompletion = await groq.chat.completions.create({
-        messages: [
-            {
-                role: "user",
-                content: prompt,
-            },
-        ],
-        temperature: 0.8,
-        model: "llama3-8b-8192",
-        // model: "mixtral-8x7b-32768",
-        // model: "Llama3-70B-8k",
-    });
-    // Print the completion returned by the LLM.
-    console.log(chatCompletion.choices[0]?.message?.content || "");
-}
+    console.log('---generating for following prompt---', '\n', preparedPrompt)
 
-export const startGeneration = async (input) => {
-    const preparedPrompt = getPreparedPromptWithInputData(input)
-    console.log('---generating for prompt: ', preparedPrompt, '---')
-    textGeneration(preparedPrompt)
+    const llmService = process.env.llm_service || 'groq'
+    switch (llmService) {
+        case 'groq':
+            return await generateWithGroq(preparedPrompt, process.env.groq_model || 'llama3-8b-8192')
+
+    }
 }

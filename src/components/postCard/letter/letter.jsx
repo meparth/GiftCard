@@ -1,16 +1,12 @@
 "use client"
 import styles from './letter.module.css'
-import {sendRequest} from "@/lib/action";
 import TextInput from "@/components/elements/TextInput";
 import DropdownInput from "@/components/elements/DropdownInput";
-import {useState} from "react";
 import Button from "@/components/elements/Button";
 import MultiselectPills from "@/components/elements/MultiselectPills";
 import {useForm} from "react-hook-form";
-import {trialAction} from "@/actions/trial";
-import {getPreparedPromptWithInputData} from "@/actions/poem-preparation";
-import {startGeneration} from "@/actions/text-generation";
-
+import {getGeneratedText} from "@/actions/text-generation";
+import {INTEREST_OPTIONS, OCCASION_OPTIONS} from "@/lib/data";
 
 const Letter = () => {
     const {
@@ -24,28 +20,11 @@ const Letter = () => {
     })
 
 
-    const occasionOptions = [
-        { value: "birthday", label: "Birthday Bash 🎂" },
-        { value: "anniversary", label: "Anniversary Adventure 💑" },
-        { value: "graduation", label: "Graduation Glory 🎓" },
-        { value: "thankyou", label: "Thank You Triumph 🙏" },
-        { value: "getwell", label: "Get Well Gala 🤒" },
-        { value: "holiday", label: "Holiday Hooray 🎄" },
-        { value: "other", label: "Other (Mystery Event) 🎭" },
-    ];
-    const interestOptions = [
-        { value: "sport", label: "Sports Superstar 🏅" },
-        { value: "music", label: "Music Maestro 🎵" },
-        { value: "travel", label: "Travel Buff ✈️" },
-        { value: "food", label: "Food Fanatic 🍕" },
-        { value: "book", label: "Book Lover 📚" },
-        { value: "movie", label: "Movie Enthusiast 🎬" },
-        { value: "art", label: "Art Admirer 🎨" },
-    ];
+    const occasionOptions = OCCASION_OPTIONS
+    const interestOptions = INTEREST_OPTIONS
 
-    const handleFormSubmit = (event) => {
-
-        console.log(startGeneration(event))
+    const handleFormSubmit = async (event) => {
+        console.log(await getGeneratedText(event, 'POEM'))
         console.log(event)
     }
 
