@@ -9,7 +9,7 @@ const ResultHolder = ({generatedText}) => {
     return (
         <>
             <div className={`${styles.textWrapperTop}`}>
-                We got you these cards, click on the one you fancy, and we'll go from there
+                We got you these cards, click on the one you fancy, and we will go from there
             </div>
             <div className={`${styles.cardHolder}`}>
                 <GeneratedCard
@@ -34,7 +34,7 @@ const ResultHolder = ({generatedText}) => {
                 </GeneratedCard>
             </div>
             <div className={`${styles.textWrapperBottom}`}>
-                don't like what you see? then go away
+                dont like what you see? then go away
             </div>
         </>
 
