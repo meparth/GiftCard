@@ -23,9 +23,13 @@ const Letter = ({onGenerate}) => {
     const interestOptions = INTEREST_OPTIONS
 
     const handleFormSubmit = async (event) => {
-        onGenerate()
-        console.log(await getGeneratedText(event, 'POEM'))
-        console.log(event)
+        const generatedText = await getGeneratedText(event, 'POEM')
+
+        // todo: this will be split into two functions later, one before generating
+        //       and one after.
+        onGenerate({text: generatedText})
+        console.log(generatedText)
+
     }
 
     return (

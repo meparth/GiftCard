@@ -5,13 +5,29 @@
     box-shadow: 1px 2px 8px black;
     margin-left: 10px;
     margin-right: 10px;
-    cursor: pointer;
     z-index: 20;
+}
+
+.imgWrapper {
+    position: relative;
+    cursor: pointer;
     transition: transform 0.2s ease;
 }
 
-.img:hover {
+.imgWrapper:hover {
     transform: scale(1.05);
 }
 
+.overlayText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: darkslateblue; /* Change the text color */
+    font-size: .8rem; /* Adjust the font size */
+    /*font-weight: bold; !* Optional: make the text bold *!*/
+    /*background-color: rgba(0, 0, 0, 0.5); !* Optional: add a semi-transparent background *!*/
+    padding: 10px; /* Optional: add padding around the text */
+    /*border-radius: 5px; !* Optional: add rounded corners *!*/
+}
 

@@ -108,6 +108,7 @@ const Envelope = () => {
     // todo: should be false, truing only for dev
     const [isResultReady, setIsResultReady] = useState(false);
     const isResultReadyRef = useRef(isResultReady);
+    const [generatedText, setGeneratedText] = useState('');
 
     useEffect(() => {
         isResultReadyRef.current = isResultReady;
@@ -165,7 +166,7 @@ const Envelope = () => {
     }
 
 
-    const handleGenerate = async () => {
+    const handleGenerateUiEffects = async (generatedData) => {
         // ✅ flap closes
         await handleCloseFlap()
         // ✅ envelope shakes
@@ -179,6 +180,9 @@ const Envelope = () => {
         // ✅ envelope descends and fades away
         await animateEnvelopeDown()
 
+        setGeneratedText(generatedData.text)
+        console.log('generated text: ', generatedData.text)
+
     }
 
     return (<>
@@ -190,7 +194,7 @@ const Envelope = () => {
                 />
 
                 {!isResultReady && (<div className={`${styles.letterholder} ${styles.letter} ${styles.envelop}`}>
-                    <Letter onGenerate={handleGenerate}/>
+                    <Letter onGenerate={handleGenerateUiEffects}/>
                 </div>)}
                 <img
                     className={`${styles.front} ${styles.envelop}`}
@@ -206,7 +210,7 @@ const Envelope = () => {
 
             {isResultReady && (
                 <div className={`${styles.resultContainer}`}>
-                    <ResultHolder></ResultHolder>
+                    <ResultHolder generatedText={generatedText}></ResultHolder>
                 </div>
             )}
         </>

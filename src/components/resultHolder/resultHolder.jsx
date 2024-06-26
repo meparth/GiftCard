@@ -3,7 +3,7 @@
 import GeneratedCard from "@/components/generatedCard/generatedCard";
 import styles from './resultHolder.module.css'
 
-const ResultHolder = () => {
+const ResultHolder = ({generatedText}) => {
 
 
     return (
@@ -13,18 +13,22 @@ const ResultHolder = () => {
             </div>
             <div className={`${styles.cardHolder}`}>
                 <GeneratedCard
+                    generatedText={generatedText}
                     className={`${styles.card}`}
                     cardSource='/pre-generated-cards/random_1.png'>
                 </GeneratedCard>
                 <GeneratedCard
+                    generatedText={generatedText}
                     className={`${styles.card}`}
                     cardSource='/pre-generated-cards/random_2.png'>
                 </GeneratedCard>
                 <GeneratedCard
+                    generatedText={generatedText}
                     className={`${styles.card}`}
                     cardSource='/pre-generated-cards/random_3.png'>
                 </GeneratedCard>
                 <GeneratedCard
+                    generatedText={generatedText}
                     className={`${styles.card}`}
                     cardSource='/pre-generated-cards/random_4.png'>
                 </GeneratedCard>
