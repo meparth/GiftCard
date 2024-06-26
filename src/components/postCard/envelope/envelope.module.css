@@ -1,6 +1,7 @@
 .container {
     position: absolute;
     bottom: 250px;
+    cursor: pointer;
 }
 
 /* Mobile styles */
@@ -53,4 +54,8 @@
     z-index: 10;
 }
 
+
+.resultContainer {
+    opacity: 0;
+}
 

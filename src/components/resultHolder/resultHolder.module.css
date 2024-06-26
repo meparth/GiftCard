@@ -8,7 +8,9 @@
     margin: auto;
     padding: 20px;
     scrollbar-width: none;
-}
+    z-index: 20;
+
+    }
 .cardHolder::-webkit-scrollbar {
     display: none;  /* Safari and Chrome */
 }

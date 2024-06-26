@@ -39,10 +39,7 @@ const animateLetterOut = () => {
     // if we don't translateY before starting animation,
     // the letter seems to open from below the envelope.
     return anime({
-        targets: `.${styles.letterholder}`,
-        duration: 0,
-        translateY: '-2rem',
-        scaleY: 0,
+        targets: `.${styles.letterholder}`, duration: 0, translateY: '-2rem', scaleY: 0,
     }).finished.then(() => {
         anime({
             targets: `.${styles.letterholder}`,
@@ -65,42 +62,51 @@ const animateLetterIn = () => {
     }).finished
 }
 
-const animateShakeEnvelope = () => {
+const animateShakeEnvelope = (duration = 100) => {
     console.log('shaking')
     return anime({
         targets: `.${styles.container}`,
-        // translateX: ['-25px', '25px'],
-        // rotate: ['5deg', '-5deg'],
-        // duration: 300,
-        // direction: 'alternate',
-        // loop: 10,
-        // easing: 'easeOutBack',
-        // easing: 'linear',
         translateX: [-10, 10],
-        duration: 100,
         easing: 'easeInOutSine',
         direction: 'alternate',
-        loop: 5,
+        duration,
+        loop: 10,
         complete: () => {
             console.log('after shakes')
             anime({
-                targets: `.${styles.container}`,
-                translateX: 0,
+                targets: `.${styles.container}`, translateX: 0,
             });
         },
 
-    })
+    }).finished
+}
+
+const animateEnvelopeDown = () => {
+    return anime({
+        targets: `.${styles.container}`,
+        translateY: [0, 1000, 0],
+        opacity: 0,
+        easing: 'easeOutElastic',
+        duration: 1500,
+    }).finished
 }
 
 const animateCardsOut = () => {
-
+    return anime({
+        targets: `.${styles.resultContainer}`,
+        duration: 1200,
+        scale: [0, 1],
+        easing: 'easeOutElastic',
+        opacity: 1,
+    }).finished
 }
+
 
 const Envelope = () => {
     const [isFlapOpen, setIsFlapOpen] = useState(false);
     // isResultReady manages shaking of envelope, show/hide envelope and result cards
     // todo: should be false, truing only for dev
-    const [isResultReady, setIsResultReady] = useState(true);
+    const [isResultReady, setIsResultReady] = useState(false);
     const isResultReadyRef = useRef(isResultReady);
 
     useEffect(() => {
@@ -121,8 +127,8 @@ const Envelope = () => {
         }
         animateEnvelopeOpen()
             .then(() => {
-            animateLetterOut();
-        })
+                animateLetterOut();
+            })
         setIsFlapOpen(true);
 
     };
@@ -138,65 +144,68 @@ const Envelope = () => {
             })
     }
 
+    // redundant
     const handleShakeEnvelope = useCallback(() => {
         // using ref because state isn't getting reflected here
         if (isResultReadyRef.current) {
             return
         }
-        console.log('handleShakeEnvelope', isResultReady)
-        animateShakeEnvelope().finished.then(() => {
+        animateShakeEnvelope().then(() => {
             // Wait for 2 seconds before shaking again
             setTimeout(handleShakeEnvelope, 2000);
         });
 
     }, [isResultReady])
 
-
-    const handleGenerate = () => {
-        handleCloseFlap().then(() => {
-            handleShakeEnvelope()
-        })
-
-        // wait for a bit, blur out everything/make invisible
-        // then show the result images in four cards
-
-
-        setTimeout(() => {
+    const handleRemoveLetter = () => {
+        return new Promise(resolve => {
             setIsResultReady(true)
-            // handleShakeEnvelope(false)
-            animateCardsOut()
-        }, 4000)
+            resolve()
+        })
     }
 
-    return (
-        <>
-            {!isResultReady && (
-                <div className={styles.container}>
-                    <img
-                        className={`${styles.back} ${styles.envelop}`}
-                        src={'/envelop-back.svg'}
-                        // onClick={handleOpenFlap}
-                    />
 
-                    <div className={`${styles.letterholder} ${styles.letter} ${styles.envelop}`}>
-                        <Letter onGenerate={handleGenerate}/>
-                    </div>
-                    <img
-                        className={`${styles.front} ${styles.envelop}`}
-                        src={'/envelop-front.svg'}
-                        onClick={handleOpenFlap}
-                    />
-                    <img
-                        className={`${styles.frontflap} ${styles.envelop}`}
-                        src={'/envelop-frontflap.svg'}
-                        onClick={handleOpenFlap}
-                    />
-                    {/*<div className='frontflap-container'>*/}
-                    {/*</div>*/}
-                </div>
-            )}
+    const handleGenerate = async () => {
+        // ✅ flap closes
+        await handleCloseFlap()
+        // ✅ envelope shakes
+        await animateShakeEnvelope(100)
+        // ✅ letter vanishes
+        await handleRemoveLetter()
+        // ✅ flap opens
+        await animateEnvelopeOpen()
+        // ✅ flies out 4 result cards
+        await animateCardsOut()
+        // ✅ envelope descends and fades away
+        await animateEnvelopeDown()
+
+    }
+
+    return (<>
+            <div className={styles.container}>
+                <img
+                    className={`${styles.back} ${styles.envelop}`}
+                    src={'/envelop-back.svg'}
+                    // onClick={handleOpenFlap}
+                />
+
+                {!isResultReady && (<div className={`${styles.letterholder} ${styles.letter} ${styles.envelop}`}>
+                    <Letter onGenerate={handleGenerate}/>
+                </div>)}
+                <img
+                    className={`${styles.front} ${styles.envelop}`}
+                    src={'/envelop-front.svg'}
+                    onClick={handleOpenFlap}
+                />
+                <img
+                    className={`${styles.frontflap} ${styles.envelop}`}
+                    src={'/envelop-frontflap.svg'}
+                    onClick={handleOpenFlap}
+                />
+            </div>
+
             {isResultReady && (
-                <div>
+                <div className={`${styles.resultContainer}`}>
                     <ResultHolder></ResultHolder>
                 </div>
             )}
