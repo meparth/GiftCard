@@ -8,7 +8,7 @@ import {useForm} from "react-hook-form";
 import {getGeneratedText} from "@/actions/text-generation";
 import {INTEREST_OPTIONS, OCCASION_OPTIONS} from "@/lib/data";
 
-const Letter = () => {
+const Letter = ({onGenerate}) => {
     const {
         handleSubmit,
         control,
@@ -19,11 +19,11 @@ const Letter = () => {
         }
     })
 
-
     const occasionOptions = OCCASION_OPTIONS
     const interestOptions = INTEREST_OPTIONS
 
     const handleFormSubmit = async (event) => {
+        onGenerate()
         console.log(await getGeneratedText(event, 'POEM'))
         console.log(event)
     }

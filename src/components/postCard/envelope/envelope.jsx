@@ -1,8 +1,9 @@
 "use client"
 import styles from './envelope.module.css'
 import anime from "animejs";
-import {useEffect, useRef, useState} from "react";
+import {useCallback, useEffect, useRef, useState} from "react";
 import Letter from "@/components/postCard/letter/letter";
+import ResultHolder from "@/components/resultHolder/resultHolder";
 
 
 const animateEnvelopeClose = () => {
@@ -31,7 +32,7 @@ const animateEnvelopeOpen = () => {
         duration: 350,
         translateY: '10rem',
         zIndex: 1,
-    })
+    }).finished
 }
 
 const animateLetterOut = () => {
@@ -51,12 +52,6 @@ const animateLetterOut = () => {
             scaleY: 1,
             zIndex: 10,
         })
-            /*.finished.then(() => {
-            anime({
-                targets: `.${styles.letterholder}`,
-                backgroundColor: 'grey',
-            })
-        })*/
     })
 
 }
@@ -67,17 +62,56 @@ const animateLetterIn = () => {
         duration: 350,
         translateY: '12rem',
         scaleY: 0,
+    }).finished
+}
+
+const animateShakeEnvelope = () => {
+    console.log('shaking')
+    return anime({
+        targets: `.${styles.container}`,
+        // translateX: ['-25px', '25px'],
+        // rotate: ['5deg', '-5deg'],
+        // duration: 300,
+        // direction: 'alternate',
+        // loop: 10,
+        // easing: 'easeOutBack',
+        // easing: 'linear',
+        translateX: [-10, 10],
+        duration: 100,
+        easing: 'easeInOutSine',
+        direction: 'alternate',
+        loop: 5,
+        complete: () => {
+            console.log('after shakes')
+            anime({
+                targets: `.${styles.container}`,
+                translateX: 0,
+            });
+        },
+
     })
 }
 
-const Envelope = () => {
+const animateCardsOut = () => {
 
+}
+
+const Envelope = () => {
     const [isFlapOpen, setIsFlapOpen] = useState(false);
+    // isResultReady manages shaking of envelope, show/hide envelope and result cards
+    // todo: should be false, truing only for dev
+    const [isResultReady, setIsResultReady] = useState(true);
+    const isResultReadyRef = useRef(isResultReady);
+
+    useEffect(() => {
+        isResultReadyRef.current = isResultReady;
+    }, [isResultReady]);
 
     // only for dev
-    // useEffect(() => {
-    //     handleOpenFlap()
-    // }, [])
+    useEffect(() => {
+        // handleOpenFlap()
+        // animateShakeEnvelope()
+    }, [])
 
     const handleOpenFlap = () => {
         if (isFlapOpen) {
@@ -86,7 +120,7 @@ const Envelope = () => {
             return;
         }
         animateEnvelopeOpen()
-            .finished.then(() => {
+            .then(() => {
             animateLetterOut();
         })
         setIsFlapOpen(true);
@@ -96,38 +130,78 @@ const Envelope = () => {
         if (!isFlapOpen) {
             return;
         }
-        animateLetterIn()
-            .finished.then(() => {
-            animateEnvelopeClose();
-        })
         setIsFlapOpen(false)
+
+        return animateLetterIn()
+            .then(() => {
+                animateEnvelopeClose();
+            })
     }
 
+    const handleShakeEnvelope = useCallback(() => {
+        // using ref because state isn't getting reflected here
+        if (isResultReadyRef.current) {
+            return
+        }
+        console.log('handleShakeEnvelope', isResultReady)
+        animateShakeEnvelope().finished.then(() => {
+            // Wait for 2 seconds before shaking again
+            setTimeout(handleShakeEnvelope, 2000);
+        });
+
+    }, [isResultReady])
+
+
+    const handleGenerate = () => {
+        handleCloseFlap().then(() => {
+            handleShakeEnvelope()
+        })
+
+        // wait for a bit, blur out everything/make invisible
+        // then show the result images in four cards
+
+
+        setTimeout(() => {
+            setIsResultReady(true)
+            // handleShakeEnvelope(false)
+            animateCardsOut()
+        }, 4000)
+    }
 
     return (
-        <div className={styles.container}>
-            <img
-                className={`${styles.back} ${styles.envelop}`}
-                src={'/envelop-back.svg'}
-                // onClick={handleOpenFlap}
-            />
+        <>
+            {!isResultReady && (
+                <div className={styles.container}>
+                    <img
+                        className={`${styles.back} ${styles.envelop}`}
+                        src={'/envelop-back.svg'}
+                        // onClick={handleOpenFlap}
+                    />
 
-            <div className={`${styles.letterholder} ${styles.letter} ${styles.envelop}`}>
-                <Letter/>
-            </div>
-            <img
-                className={`${styles.front} ${styles.envelop}`}
-                src={'/envelop-front.svg'}
-                onClick={handleOpenFlap}
-            />
-            <img
-                className={`${styles.frontflap} ${styles.envelop}`}
-                src={'/envelop-frontflap.svg'}
-                onClick={handleOpenFlap}
-            />
-            {/*<div className='frontflap-container'>*/}
-            {/*</div>*/}
-        </div>
+                    <div className={`${styles.letterholder} ${styles.letter} ${styles.envelop}`}>
+                        <Letter onGenerate={handleGenerate}/>
+                    </div>
+                    <img
+                        className={`${styles.front} ${styles.envelop}`}
+                        src={'/envelop-front.svg'}
+                        onClick={handleOpenFlap}
+                    />
+                    <img
+                        className={`${styles.frontflap} ${styles.envelop}`}
+                        src={'/envelop-frontflap.svg'}
+                        onClick={handleOpenFlap}
+                    />
+                    {/*<div className='frontflap-container'>*/}
+                    {/*</div>*/}
+                </div>
+            )}
+            {isResultReady && (
+                <div>
+                    <ResultHolder></ResultHolder>
+                </div>
+            )}
+        </>
+
     )
 
 

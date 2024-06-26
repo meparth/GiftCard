@@ -1,0 +1,29 @@
+
+.cardHolder {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: scroll;
+    width: 70%;
+    margin: auto;
+    padding: 20px;
+    scrollbar-width: none;
+}
+.cardHolder::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+
+.card {
+
+}
+
+.textWrapperTop {
+    text-align: center;
+    font-size: 1.3rem;
+    color: darkcyan;
+    text-shadow: 0 0 6px white;
+}
+.textWrapperBottom {
+    text-align: center;
+    color: darksalmon;
+}

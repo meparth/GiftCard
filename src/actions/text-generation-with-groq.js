@@ -19,7 +19,7 @@ export const generateWithGroq = async (prompt, model = 'llama3-8b-8192') => {
         // model: "Llama3-70B-8k",
     });
     // Print the completion returned by the LLM.
-    console.log(chatCompletion.choices[0]?.message?.content || "");
+    console.log('> ', chatCompletion.choices[0]?.message?.content || "");
     return chatCompletion.choices[0]?.message?.content || ""
 }
 
